@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Калькулятор</title>
+  <link rel="stylesheet" href="../public/css/Calc.css" />
+</head>
+<body>
+
+<div class="calculator-container">
+  <h1>Калькулятор</h1>
+
+  <form id="calcForm" action="../calculate.php" method="post">
+
+    <input type="text" id="display" name="expression" readonly placeholder="0" />
+
+    <div class="buttons">
+      <button type="button" class="btn" data-value="7">7</button>
+      <button type="button" class="btn" data-value="8">8</button>
+      <button type="button" class="btn" data-value="9">9</button>
+      <button type="button" class="btn operator" data-value="/">÷</button>
+
+      <button type="button" class="btn" data-value="4">4</button>
+      <button type="button" class="btn" data-value="5">5</button>
+      <button type="button" class="btn" data-value="6">6</button>
+      <button type="button" class="btn operator" data-value="*">×</button>
+
+      <button type="button" class="btn" data-value="1">1</button>
+      <button type="button" class="btn" data-value="2">2</button>
+      <button type="button" class="btn" data-value="3">3</button>
+      <button type="button" class="btn operator" data-value="-">−</button>
+
+      <button type="button" class="btn" data-value="0">0</button>
+      <button type="button" class="btn" data-value=".">.</button>
+      <button type="button" id="clear" class="btn">C</button>
+      <button type="button" class="btn operator" data-value="+">+</button>
+
+      <button type="submit" class="btn equals">=</button>
+        <button type="submit" class="btn equals"><a href="/" style="color: #fff; text-decoration:none;">Главная страница</a></button>
+    </div>
+  </form>
+</div>
+
+<script>
+  const display = document.getElementById('display');
+  const buttons = document.querySelectorAll('.btn');
+  const clearBtn = document.getElementById('clear');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const value = button.getAttribute('data-value');
+      if (value) {
+        if (display.value === "0") display.value = '';
+        display.value += value;
+      }
+    });
+  });
+
+  clearBtn.addEventListener('click', () => {
+    display.value = '';
+  });
+</script>
+
+</body>
+</html>
